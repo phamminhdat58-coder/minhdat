@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư Tình Đặc Biệt ❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffc0cb; /* Nền màu hồng nhạt */
+            margin: 0;
+            overflow: hidden; /* Ẩn các trái tim bay ra ngoài màn hình */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* ------------------ THƯ ĐÓNG (TRÁI TIM) ------------------ */
+        .heart-button {
+            cursor: pointer;
+            width: 150px;
+            height: 150px;
+            background-color: #ff69b4; /* Màu hồng đậm của trái tim */
+            position: relative;
+            transform: rotate(-45deg); /* Xoay để tạo hình trái tim */
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .heart-button::before,
+        .heart-button::after {
+            content: '';
+            width: 150px;
+            height: 150px;
+            background-color: #ff69b4;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart-button::before { top: -75px; left: 0; }
+        .heart-button::after { top: 0; left: 75px; }
+
+        .heart-button:hover {
+            transform: rotate(-45deg) scale(1.1);
+        }
+
+        .heart-button.open {
+            opacity: 0;
+            pointer-events: none;
+            transform: rotate(-45deg) scale(0.1);
+        }
+        
+        .open-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            color: white;
+            font-weight: bold;
+            font-size: 1.5em;
+            z-index: 15;
+            user-select: none;
+        }
+
+        /* ------------------ THƯ MỞ ------------------ */
+        .letter-container {
+            position: absolute;
+            width: 80%;
+            max-width: 600px;
+            padding: 40px;
+            background-color: #fffafa; /* Màu trắng cho bức thư */
+            border-radius: 15px;
+            border: 5px solid #ff69b4; /* Tô nét màu hồng xung quanh */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(100vh) scale(0.8); /* Bắt đầu từ dưới và nhỏ */
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Hiệu ứng hiện lên "nảy" */
+            z-index: 5;
+        }
+
+        .letter-container.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .letter-content h2 {
+            color: #d81b60;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+        }
+
+        .letter-content p {
+            font-size: 1.2em;
+            color: #4a4a4a;
+            line-height: 1.8;
+            white-space: pre-wrap; /* Giữ định dạng xuống dòng */
+            text-align: left;
+            padding: 0 15px;
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-style: italic;
+            color: #880e4f;
+            font-weight: bold;
+            text-align: right;
+            padding-right: 15px;
+        }
+
+        /* ------------------ HIỆU ỨNG TRÁI TIM BONG BÓNG ------------------ */
+        .heart-bubble {
+            position: absolute;
+            background-color: #ffb6c1; /* Màu hồng nhạt cho bong bóng */
+            width: 15px;
+            height: 15px;
+            transform: rotate(-45deg);
+            pointer-events: none;
+            animation: floatup 6s infinite ease-out;
+            opacity: 0;
+            z-index: 0;
+        }
+        
+        .heart-bubble::before,
+        .heart-bubble::after {
+            content: '';
+            width: 15px;
+            height: 15px;
+            background-color: #ffb6c1;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart-bubble::before { top: -7.5px; left: 0; }
+        .heart-bubble::after { top: 0; left: 7.5px; }
+        
+        @keyframes floatup {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(-1000px) rotate(150deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heart-button" id="openLetterBtn">
+        <span class="open-text">Mở</span>
+    </div>
+
+    <div class="letter-container" id="letter">
+        <div class="letter-content">
+            <h2>Gửi bà xã yêu dấu nhân ngày 20/10 ❤️❤️❤️🌹🌹🌹❗
+            
+           </h2> <p id="loveMessage">
+                Em đọc được bức thư này anh biết qua 20/10 rùi , anh cũng có món quà gửi tặng vợ nè . Bức thư này anh chúc em luôn hạnh phúc bên người em yêu nhất ❤️🌹. Chúc em luôn mỉm cười , luôn vui vẻ cởi mở hơn . Anh biết ngày này ai cũng háo hức có được lời chúc món quà ý nghĩa , anh hiểu điều đó ợ.Tuy món quà đến không đúng thời điểm nhưng đó cũng là tâm tư của anh nhắn nhủ e .
+Chúc người con gái của anh mãi xinh đẹp , phấn đấu nỗ lực cho mục tiêu bản thân và yêu anh nhiều hơn nhé , chúc em học giỏi và sau này chúng mình còn bên nhau thì hãy cố gắng nhiều hơn nữa nhé !! 
+          ❤️❤️❤️💕💕💕
+                Cảm ơn em đã bước vào cuộc đời anh.
+                
+                Mãi mãi yêu em!
+            </p>
+            <div class="signature">Người yêu em,<br> [Alexander Đạt bơ vơ ]</div>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('openLetterBtn');
+        const letter = document.getElementById('letter');
+        
+        // --- CHỈNH SỬA NỘI DUNG THƯ TRỰC TIẾP TẠI ĐÂY ---
+        const newMessage = `
+             Em đọc được bức thư này anh biết qua 20/10 rùi , anh cũng có món quà gửi tặng vợ nè . Bức thư này anh chúc em luôn hạnh phúc bên người em yêu nhất ❤️🌹. Chúc em luôn mỉm cười , luôn vui vẻ cởi mở hơn . Anh biết ngày này ai cũng háo hức có được lời chúc món quà ý nghĩa , anh hiểu điều đó ợ.Tuy món quà đến không đúng thời điểm nhưng đó cũng là tâm tư của anh nhắn nhủ e .
+Chúc người con gái của anh mãi xinh đẹp , phấn đấu nỗ lực cho mục tiêu bản thân và yêu anh nhiều hơn nhé , chúc em học giỏi và sau này chúng mình còn bên nhau thì hãy cố gắng nhiều hơn nữa nhé !! 
+          ❤️❤️❤️💕💕💕
+                Cảm ơn em đã bước vào cuộc đời anh.
+                
+                Mãi mãi yêu em!
+        `;
+        // Thay đổi nội dung thư đã được tạo sẵn
+        document.getElementById('loveMessage').textContent = newMessage.trim();
+
+        // Xử lý sự kiện khi nhấn vào trái tim
+        btn.addEventListener('click', () => {
+            btn.classList.add('open');
+            
+            // Hiện thư sau khi nút trái tim biến mất
+            setTimeout(() => {
+                letter.classList.add('show');
+                createHeartBubbles();
+            }, 500); 
+
+            btn.style.pointerEvents = 'none';
+        });
+
+        // Hàm tạo hiệu ứng trái tim bong bóng
+        function createHeartBubbles() {
+            const numHearts = 40; // Số lượng trái tim muốn tạo
+            const container = document.body;
+
+            for (let i = 0; i < numHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-bubble');
+                
+                // Vị trí xuất phát ngẫu nhiên gần khu vực thư
+                heart.style.left = `${Math.random() * 100}vw`; 
+                heart.style.bottom = `${-50}px`; 
+                
+                // Kích thước và tốc độ ngẫu nhiên
+                const size = Math.random() * 15 + 10; 
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                heart.style.animationDuration = `${Math.random() * 5 + 4}s`; // Tốc độ bay
+                heart.style.animationDelay = `${Math.random() * 3}s`; // Độ trễ
+                
+                container.appendChild(heart);
+            }
+        }
+    </script>
+</body>
+</html>
